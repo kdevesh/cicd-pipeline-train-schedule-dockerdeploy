@@ -14,9 +14,6 @@ pipeline {
             steps {
                 script {
                     app = docker.build("kdevesh/train-schedule")
-                    app.inside{
-                        sh 'echo ${env.BUILD_NUMBER}'
-                    }
                 }
             }
         }
