@@ -14,9 +14,6 @@ pipeline {
             steps {
                 script {
                     app = docker.build("kdevesh/train-schedule")
-                    app.inside {
-                        sh 'echo $(curl localhost:8080)'
-                    }
                 }
             }
         }
@@ -26,7 +23,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', 'docker_hub_key') {
+                    docker.withRegistry('https://registry.hub.docker.com'', 'docker_hub_key') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
